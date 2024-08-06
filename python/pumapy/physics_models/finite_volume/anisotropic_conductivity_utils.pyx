@@ -3,7 +3,7 @@ cimport numpy as np
 
 np.import_array()
 DTYPE = np.int_
-ctypedef np.int_t DTYPE_t
+ctypedef np.int DTYPE_t
 
 
 def index_at_p(int index, int size):
