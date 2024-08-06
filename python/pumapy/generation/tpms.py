@@ -79,8 +79,10 @@ class GeneratorTPMS:
         self._workspace.resize_new_matrix(self._size)
         self._workspace.matrix = generate(self._workspace.matrix.astype(float), self._size[0], self._size[1],
                                           self._size[2], self._wmin, self._wmax, self._qmin, self._qmax, self._equation)
+        # print(self._workspace.show_matrix())
         self._workspace.matrix = (255. * (self._workspace.matrix - np.min(self._workspace.matrix)) /
                                   np.ptp(self._workspace.matrix)).astype(np.uint16)
+        # print(self._workspace.show_matrix())
         print("Generated in: " + str(t.elapsed()) + " seconds")
         return self._workspace
 
@@ -117,7 +119,7 @@ class GeneratorTPMS:
             raise Exception("Error, invalid q, must be >= 0")
         if self._qmax <= 0:
             raise Exception("Error, invalid q, must be >= 0")
-        if self._qmax < self._wmin:
+        if self._qmax < self._qmin:
             raise Exception("Error, invalid q, q[1] cannot be < q[0]")
-        if self._equation != 0 and self._equation != 1 and self._equation != 2:
-            raise Exception("Error, invalid equation number. Must be 0, 1, or 2")
+        # if self._equation != 0 and self._equation != 1 and self._equation != 2:
+        #     raise Exception("Error, invalid equation number. Must be 0, 1, or 2")
